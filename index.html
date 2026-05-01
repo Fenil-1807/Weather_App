@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="A modern weather app that shows real-time weather data for any city in the world." />
+  <title>WeatherNow – Real-Time Weather App</title>
+  <link rel="icon" href="data:,">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="bg-sunny">
+  <!-- Animated background particles -->
+  <div class="particles" id="particles"></div>
+
+  <!-- Main App Container -->
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo">
+        <i class="fa-solid fa-cloud-sun logo-icon"></i>
+        <span>WeatherNow</span>
+      </div>
+      <p class="tagline">Real-time weather at your fingertips</p>
+    </header>
+
+    <!-- Search Section -->
+    <section class="search-section" aria-label="Search for a city">
+      <div class="search-wrapper">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input type="text" id="cityInput" class="search-input" placeholder="Search for a city..." autocomplete="off"
+          aria-label="Enter city name" />
+        <button id="searchBtn" class="search-btn" aria-label="Search weather">
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- Loading Spinner -->
+    <div class="spinner-wrapper" id="loadingSpinner" aria-live="polite" aria-label="Loading weather data" hidden>
+      <div class="spinner">
+        <div class="spinner-ring"></div>
+        <div class="spinner-ring"></div>
+        <div class="spinner-ring"></div>
+      </div>
+      <p class="loading-text">Fetching weather data...</p>
+    </div>
+
+    <!-- Error Message -->
+    <div class="error-card" id="errorCard" hidden role="alert">
+      <i class="fa-solid fa-circle-exclamation error-icon"></i>
+      <p class="error-title">City Not Found</p>
+      <p class="error-subtitle" id="errorMessage">Please check the city name and try again.</p>
+    </div>
+
+    <!-- Weather Card -->
+    <main class="weather-card" id="weatherCard" hidden aria-live="polite">
+      <!-- Card Top -->
+      <div class="card-top">
+        <div class="location-info">
+          <h1 class="city-name" id="cityName">—</h1>
+          <p class="country-name" id="countryName">
+            <i class="fa-solid fa-location-dot"></i>
+            <span id="countryText">—</span>
+          </p>
+          <p class="date-time" id="dateTime">—</p>
+        </div>
+        <div class="weather-icon-wrapper">
+          <div class="weather-icon-bg">
+            <img src="" alt="Weather condition icon" id="weatherIcon" class="weather-icon" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Temperature -->
+      <div class="temp-section">
+        <span class="temperature" id="temperature">—</span>
+        <span class="temp-unit">°C</span>
+        <div class="feels-like">
+          Feels like <strong id="feelsLike">—°C</strong>
+        </div>
+      </div>
+
+      <!-- Condition Badge -->
+      <div class="condition-badge" id="conditionBadge">
+        <i class="fa-solid fa-circle-info"></i>
+        <span id="weatherCondition">—</span>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="stats-grid">
+        <!-- Humidity -->
+        <div class="stat-card" id="statHumidity">
+          <div class="stat-icon">
+            <i class="fa-solid fa-droplet"></i>
+          </div>
+          <div class="stat-info">
+            <span class="stat-value" id="humidity">—</span>
+            <span class="stat-label">Humidity</span>
+          </div>
+        </div>
+
+        <!-- Wind Speed -->
+        <div class="stat-card" id="statWind">
+          <div class="stat-icon">
+            <i class="fa-solid fa-wind"></i>
+          </div>
+          <div class="stat-info">
+            <span class="stat-value" id="windSpeed">—</span>
+            <span class="stat-label">Wind Speed</span>
+          </div>
+        </div>
+
+        <!-- Visibility -->
+        <div class="stat-card" id="statVisibility">
+          <div class="stat-icon">
+            <i class="fa-solid fa-eye"></i>
+          </div>
+          <div class="stat-info">
+            <span class="stat-value" id="visibility">—</span>
+            <span class="stat-label">Visibility</span>
+          </div>
+        </div>
+
+        <!-- Pressure -->
+        <div class="stat-card" id="statPressure">
+          <div class="stat-icon">
+            <i class="fa-solid fa-gauge-high"></i>
+          </div>
+          <div class="stat-info">
+            <span class="stat-value" id="pressure">—</span>
+            <span class="stat-label">Pressure</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sunrise / Sunset -->
+      <div class="sun-times">
+        <div class="sun-item">
+          <i class="fa-solid fa-sun sun-rise"></i>
+          <div>
+            <span class="sun-label">Sunrise</span>
+            <span class="sun-time" id="sunrise">—</span>
+          </div>
+        </div>
+        <div class="sun-divider"></div>
+        <div class="sun-item">
+          <i class="fa-solid fa-moon sun-set"></i>
+          <div>
+            <span class="sun-label">Sunset</span>
+            <span class="sun-time" id="sunset">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card Footer -->
+      <div class="card-footer">
+        <p>Last updated: <span id="lastUpdated">—</span></p>
+        <p>Powered by OpenWeatherMap</p>
+      </div>
+    </main>
+
+    <!-- Welcome State (shown before search) -->
+    <div class="welcome-state" id="welcomeState">
+      <div class="welcome-icon">
+        <i class="fa-solid fa-cloud-sun-rain"></i>
+      </div>
+      <h2>Check the Weather</h2>
+      <p>Enter a city name above to get real-time weather updates.</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
