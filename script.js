@@ -8,7 +8,7 @@
  *     3. Replace the empty string below with your key
  */
 
-const API_KEY = "Your_API_Key"; //  Replace with your OpenWeatherMap API key
+const API_KEY = "13bc126d259b117f9a1e396d4f6d763f"; //  Replace with your OpenWeatherMap API key
 const BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
 
 // ── DOM References ──────────────────────────────────────────────────────
