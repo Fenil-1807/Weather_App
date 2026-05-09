@@ -19,9 +19,9 @@ A responsive weather application that fetches real-time weather data using OpenW
 
 ![Screenshot 1](assets/Screenshot_Weather_App.png)
 
-![Screenshot 2](assets/Screenshot_Weather_App.2.png)
+![Screenshot 2](assets/Screenshot_Weather_App_2.png)
 
-![Screenshot 3](assets/Screenshot_Weather_App.3.png)
+![Screenshot 3](assets/Screenshot_Weather_App_3.png)
 
 ## 🌐 Live Demo
 https://fenil-1807.github.io/Weather_App/
