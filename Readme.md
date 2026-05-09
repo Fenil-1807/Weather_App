@@ -16,7 +16,7 @@ A responsive weather application that fetches real-time weather data using OpenW
 - OpenWeatherMap API
 
 ## 📸 Preview
-(Add screenshot here)
+![Weather App Preview](assets/screenshot.png)
 
 ## 🌐 Live Demo
 (Add GitHub Pages link here)
